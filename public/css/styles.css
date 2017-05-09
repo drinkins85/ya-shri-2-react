@@ -1,0 +1,139 @@
+body {
+    background-color: rgba(238,238,230,0.43);
+}
+.container {
+    background-color: white;
+}
+
+.error-block {
+    position: fixed;
+   /* top:-200px; */
+    display: table;
+    background-color: red;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    opacity: 0.9;
+    transition: all 1s;
+    box-sizing: border-box;
+    z-index: 999;
+    vertical-align: top;
+
+}
+
+.error-block_visible {
+    top:0;
+}
+
+.error-block__message{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.error-block__close {
+    display: table-cell;
+    padding-left: 20px;
+    vertical-align: top;
+    cursor: pointer;
+
+}
+
+.error-block__close i {
+    background-color: darkred;
+    font-style: normal;
+    padding: 2px 5px;
+}
+
+.error-block__close:hover{
+    color: yellow;
+}
+
+.addForm {
+    background-color: lightgray;
+    padding:20px;
+    margin-bottom: 30px;
+}
+
+.editForm {
+    background-color: rgba(226,226,218,0.43);
+    padding:20px;
+    margin-bottom: 30px;
+}
+
+
+
+.select-container select /*.select-container input */{
+    box-sizing: border-box;
+    width: 100%;
+    line-height: inherit;
+    padding:8px 5px;
+
+}
+
+.select-classroom {
+    margin-bottom: 20px;
+}
+
+.select-container textarea {
+    box-sizing: border-box;
+    width: 100%;
+    height:100%;
+
+}
+
+.input_prefix_from:before{
+    content: "С";
+    padding-right: 5px;
+    color: darkgrey;
+}
+
+.input_prefix_to:before{
+    content: "ПО";
+    padding-right: 5px;
+    color: darkgrey;
+}
+
+#filter button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-desc {
+    padding: 20px;
+}
+
+#filter {
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+label {
+    width: 32%;
+    display: inline-block;
+}
+
+.button_edit {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+div.schedule-table__col_align_right {text-align: right;}
+
+.opacityappear-enter {
+    opacity: 0.01;
+}
+
+.opacityappear-enter.opacityappear-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+
+.opacityappear-leave {
+    opacity: 1;
+}
+
+.opacityappear-leave.opacityappear-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
