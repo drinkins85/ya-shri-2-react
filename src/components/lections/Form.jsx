@@ -71,19 +71,27 @@ class Form extends React.Component {
             });
         }
 
-
         if (err.length === 0) {
             let classroom = this.props.classrooms.filter(classroom => classroom.id === classroomId)[0];
             let teacher = this.props.teachers.filter(teacher => teacher.id === teacherId)[0];
             let schools = this.props.schools.filter(school => schoolIds.some((id) => id === school.id));
-            this.props.onAdd(theme, dateStart, dateFinish, classroom, teacher, schools);
-            this.refs.theme.value = '';
-            this.refs.date.value = '';
-            this.refs.timeStart.value = '';
-            this.refs.timeFinish.value = '';
-            this.refs.classroom.setState({selected: -1});
-            this.refs.teacher.setState({selected: -1});
-            this.refs.schools.setState({selected: []});
+
+            let totalStudentsCount = schools.reduce(function(sum, school) {
+                return sum + school.amount;
+            }, 0);
+
+            if (totalStudentsCount > classroom.capacity){
+                this.props.errorAdd("Аудитория не вмещает такое количество студентов");
+            } else {
+                this.props.onAdd(theme, dateStart, dateFinish, classroom, teacher, schools);
+                this.refs.theme.value = '';
+                this.refs.date.value = '';
+                this.refs.timeStart.value = '';
+                this.refs.timeFinish.value = '';
+                this.refs.classroom.setState({selected: -1});
+                this.refs.teacher.setState({selected: -1});
+                this.refs.schools.setState({selected: []});
+            }
         }
     }
 
