@@ -120,6 +120,16 @@ label {
 
 div.schedule-table__col_align_right {text-align: right;}
 
+.loading {
+    background-image: url("../img/load-indicator.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 10px;
+    height: 40px;
+
+    width: 100%;
+}
+
 .opacityappear-enter {
     opacity: 0.01;
 }
