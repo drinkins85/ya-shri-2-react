@@ -25,29 +25,35 @@ class Lections extends React.Component{
                                schools={this.props.schools}
                                onFilter={this.props.actions.filterLection}
                                onReset={this.props.actions.filterLectionClear}/>
-                <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-                    {lections.map((lection) => {
-                        return (
-                            <Lection  key={lection.id}
-                                      id={lection.id}
-                                      theme={lection.theme}
-                                      dateStart={lection.dateStart}
-                                      dateFinish={lection.dateFinish}
-                                      classroom={lection.classroom}
-                                      teacher={lection.teacher}
-                                      schools={lection.schools}
-                                      onEdit={this.props.actions.editLection}
-                                      onDelete={this.props.actions.deleteLection}
-                                      errorAdd={this.props.errActions.addError}
-                                      errorHide={this.props.errActions.deleteErrors}
-                                      allClassrooms={this.props.classrooms}
-                                      allTeachers={this.props.teachers}
-                                      allSchools={this.props.schools}
-                                      lections={this.props.lections}
-                            />
-                        )})
-                    }
-                </CSSTransitionGroup>
+                {this.props.lections.length === 0 ?
+                    <div className="loading"></div>
+                    :
+                    <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500}
+                                        transitionLeaveTimeout={300}>
+                        {lections.map((lection) => {
+                            return (
+                                <Lection key={lection._id}
+                                         id={lection._id}
+                                         theme={lection.theme}
+                                         dateStart={lection.dateStart}
+                                         dateFinish={lection.dateFinish}
+                                         classroom={lection.classroom}
+                                         teacher={lection.teacher}
+                                         schools={lection.schools}
+                                         onEdit={this.props.actions.editLection}
+                                         onDelete={this.props.actions.deleteLection}
+                                         errorAdd={this.props.errActions.addError}
+                                         errorHide={this.props.errActions.deleteErrors}
+                                         allClassrooms={this.props.classrooms}
+                                         allTeachers={this.props.teachers}
+                                         allSchools={this.props.schools}
+                                         lections={this.props.lections}
+                                />
+                            )
+                        })
+                        }
+                    </CSSTransitionGroup>
+                }
                 <LectionForm onAdd={this.props.actions.addLection}
                              lections={this.props.lections}
                              classrooms={this.props.classrooms}

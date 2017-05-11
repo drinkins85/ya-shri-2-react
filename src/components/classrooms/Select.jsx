@@ -28,7 +28,7 @@ class Select extends React.Component{
                 {
                     this.props.classrooms.map((classroom) => {
                         return (
-                            <option key={classroom.id} value={classroom.id}>{classroom.title}</option>
+                            <option key={classroom._id} value={classroom._id}>{classroom.title}</option>
                         )
                     })
                 }

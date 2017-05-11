@@ -15,22 +15,28 @@ class Schools extends React.Component{
                         <h2>Школы</h2>
                     </div>
                 </div>
-                <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-                    {this.props.schools.map((school) => {
-                        return (
-                            <School title={school.title}
-                                    amount={school.amount}
-                                    id={school.id}
-                                    key={school.id}
-                                    onEdit={this.props.actions.editSchool}
-                                    onDelete={this.props.actions.deleteSchool}
-                                    errorAdd={this.props.errActions.addError}
-                                    errorHide={this.props.errActions.deleteErrors}
-                                    lections={this.props.lections}
-                              />
-                        )})
-                    }
-                </CSSTransitionGroup>
+                {this.props.schools.length === 0 ?
+                    <div className="loading"></div>
+                    :
+                    <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500}
+                                        transitionLeaveTimeout={300}>
+                        {this.props.schools.map((school) => {
+                            return (
+                                <School title={school.title}
+                                        amount={school.amount}
+                                        id={school._id}
+                                        key={school._id}
+                                        onEdit={this.props.actions.editSchool}
+                                        onDelete={this.props.actions.deleteSchool}
+                                        errorAdd={this.props.errActions.addError}
+                                        errorHide={this.props.errActions.deleteErrors}
+                                        lections={this.props.lections}
+                                />
+                            )
+                        })
+                        }
+                    </CSSTransitionGroup>
+                }
                 <SchoolsForm onAdd={this.props.actions.addSchool}
                              errorAdd={this.props.errActions.addError}
                              errorHide={this.props.errActions.deleteErrors}

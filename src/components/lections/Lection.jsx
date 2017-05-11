@@ -48,7 +48,7 @@ class Lection extends React.Component {
         let dateFinish = new Date(Date.parse(date+"T"+timeFinish+":00.000+03:00"));
 
         //есть ли лекции в это время
-        let lectionsByDates = filtredLections(this.props.lections, {id:this.props.id, dateStart: dateStart, dateFinish: dateFinish});
+        let lectionsByDates = filtredLections(this.props.lections, {_id:this.props.id, dateStart: dateStart, dateFinish: dateFinish});
 
         if (lectionsByDates.length > 0){
             // не пересекается ли аудитория
@@ -67,16 +67,16 @@ class Lection extends React.Component {
             schoolIds.forEach((schoolId) => {
                 let filterBySchool = filtredLections(lectionsByDates, {schools: [schoolId]});
                 if (filterBySchool.length > 0){
-                    let school = filterBySchool[0].schools.filter(school => school.id === schoolId)[0];
+                    let school = filterBySchool[0].schools.filter(school => school._id === schoolId)[0];
                     this.props.errorAdd(`Для ${school.title} уже назначены лекции в это время`);
                     err++;
                 }
             });
         }
         if (err.length === 0) {
-            let classroom = this.props.allClassrooms.filter(classroom => classroom.id === classroomId)[0];
-            let teacher = this.props.allTeachers.filter(teacher => teacher.id === teacherId)[0];
-            let schools = this.props.allSchools.filter(school => schoolIds.some((id) => id === school.id));
+            let classroom = this.props.allClassrooms.filter(classroom => classroom._id === classroomId)[0];
+            let teacher = this.props.allTeachers.filter(teacher => teacher._id === teacherId)[0];
+            let schools = this.props.allSchools.filter(school => schoolIds.some((id) => id === school._id));
             this.props.onEdit(this.props.id, theme, dateStart, dateFinish, classroom, teacher, schools);
             this.setState({isEditing:false});
         }
@@ -96,8 +96,6 @@ class Lection extends React.Component {
         let timeStart = this.props.dateStart.toLocaleString('ru', {hour: 'numeric', minute: 'numeric'});
         let timeFinish = this.props.dateFinish.toLocaleString('ru', {hour: 'numeric', minute: 'numeric'});
         let date = year + '-' + month + '-' + day;
-
-        console.log(date);
         return(
             <form onSubmit={this.handleSubmit} className="editForm">
                 <div className="schedule-table__row">
@@ -116,17 +114,17 @@ class Lection extends React.Component {
                      </div>
                     <div className="schedule-table__col schedule-table__col_size_third schedule-table__col_vertical_middle" >
                         <div className="select-container select-classroom">
-                            <ClassroomsSelect classrooms={this.props.allClassrooms} ref="classroom" selectedId={this.props.classroom.id}/>
+                            <ClassroomsSelect classrooms={this.props.allClassrooms} ref="classroom" selectedId={this.props.classroom._id}/>
                         </div>
                         <div className="select-container">
-                            <TeachersSelect teachers={this.props.allTeachers} ref="teacher" selectedId={this.props.teacher.id} />
+                            <TeachersSelect teachers={this.props.allTeachers} ref="teacher" selectedId={this.props.teacher._id} />
                         </div>
                     </div>
                     <div className="schedule-table__col schedule-table__col_size_third schedule-table__col_vertical_middle" >
                         <div className="select-container">
                             <SchoolsSelect schools={this.props.allSchools}
                                            ref="schools"
-                                           selectedId={this.props.schools.map(school => school.id)}/>
+                                           selectedId={this.props.schools.map(school => school._id)}/>
                         </div>
                     </div>
                 </div>
@@ -148,8 +146,8 @@ class Lection extends React.Component {
         let year = this.props.dateStart.getFullYear();
         let timeStart = this.props.dateStart.toLocaleString('ru', { hour: 'numeric', minute: 'numeric'});
         let timeFinish = this.props.dateFinish.toLocaleString('ru', { hour: 'numeric', minute: 'numeric'});
-        let teacherDescriptionId = 'teacher_desc_'+ this.props.teacher.id;
-        let classroomDescriptionId = 'classroom_desc_'+ this.props.classroom.id;
+        let teacherDescriptionId = 'teacher_desc_'+ this.props.teacher._id;
+        let classroomDescriptionId = 'classroom_desc_'+ this.props.classroom._id;
         return(
             <div className="schedule-table__row horisontal-line_color_gray" >
                 <div className="schedule-table__col schedule-table__col-date schedule-table__col_size_m">
@@ -166,7 +164,7 @@ class Lection extends React.Component {
                     {
                         this.props.schools.map(school => {
                             return(
-                                <a className="schedule-table__school schedule-table__school_triangle" title={school.title}  key={school.id}>
+                                <a className="schedule-table__school schedule-table__school_triangle" title={school.title}  key={school._id}>
                                     {school.title}
                                 </a>
                              )

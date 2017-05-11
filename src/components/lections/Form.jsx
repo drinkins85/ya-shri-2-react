@@ -72,9 +72,9 @@ class Form extends React.Component {
         }
 
         if (err.length === 0) {
-            let classroom = this.props.classrooms.filter(classroom => classroom.id === classroomId)[0];
-            let teacher = this.props.teachers.filter(teacher => teacher.id === teacherId)[0];
-            let schools = this.props.schools.filter(school => schoolIds.some((id) => id === school.id));
+            let classroom = this.props.classrooms.filter(classroom => classroom._id === classroomId)[0];
+            let teacher = this.props.teachers.filter(teacher => teacher._id === teacherId)[0];
+            let schools = this.props.schools.filter(school => schoolIds.some((id) => id === school._id));
 
             let totalStudentsCount = schools.reduce(function(sum, school) {
                 return sum + school.amount;

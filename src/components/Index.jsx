@@ -14,7 +14,19 @@ import Lections from './lections/Lections';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 class Index extends React.Component{
+
+    constructor(props){
+        super(props);
+
+        this.props.classroomsActions.loadData();
+        this.props.schoolsActions.loadData();
+        this.props.teachersActions.loadData();
+        this.props.lectionsActions.loadData();
+
+    }
+
     render(){
+
         return(
             <section>
                 <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500} transitionLeaveTimeout={300}>

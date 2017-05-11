@@ -14,23 +14,28 @@ class Classrooms extends React.Component{
                         <h2>Аудитории</h2>
                     </div>
                 </div>
-                <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-                    {this.props.classrooms.map((classroom) => {
-                        return (
-                            <Classroom title={classroom.title}
-                                       capacity={classroom.capacity}
-                                       description={classroom.description}
-                                       id={classroom.id}
-                                       key={classroom.id}
-                                       onEdit={this.props.actions.editClassroom}
-                                       onDelete={this.props.actions.deleteClassroom}
-                                       errorAdd={this.props.errActions.addError}
-                                       errorHide={this.props.errActions.deleteErrors}
-                                       lections={this.props.lections}
-                            />
-                        )})
-                    }
-                </CSSTransitionGroup>
+                {
+                    this.props.classrooms.length === 0 ?
+                        <div className="loading"></div>
+                        :
+                        <CSSTransitionGroup transitionName="opacityappear" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+                            {this.props.classrooms.map((classroom) => {
+                                return (
+                                    <Classroom title={classroom.title}
+                                               capacity={classroom.capacity}
+                                               description={classroom.description}
+                                               id={classroom._id}
+                                               key={classroom._id}
+                                               onEdit={this.props.actions.editClassroom}
+                                               onDelete={this.props.actions.deleteClassroom}
+                                               errorAdd={this.props.errActions.addError}
+                                               errorHide={this.props.errActions.deleteErrors}
+                                               lections={this.props.lections}
+                                    />
+                                )})
+                            }
+                        </CSSTransitionGroup>
+                }
                 <ClassroomForm onAdd={this.props.actions.addClassroom}
                                errorAdd={this.props.errActions.addError}
                                errorHide={this.props.errActions.deleteErrors}

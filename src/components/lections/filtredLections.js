@@ -11,19 +11,19 @@ export default function filtredLections(lections, filter){
 
 function compareObjects(objTarget, objFilter){
 
-    if (!!objFilter["id"]){
-        if (objFilter["id"] === objTarget["id"]){
+    if (!!objFilter["_id"]){
+        if (objFilter["_id"] === objTarget["_id"]){
             return false;
         }
     }
 
     if (!!objFilter["teacher"]){
-        if (objFilter["teacher"] !== objTarget["teacher"].id){
+        if (objFilter["teacher"] !== objTarget["teacher"]._id){
             return false;
         }
     }
     if (!!objFilter["classroom"]){
-        if (objFilter["classroom"] !== objTarget["classroom"].id){
+        if (objFilter["classroom"] !== objTarget["classroom"]._id){
             return false;
         }
     }
@@ -31,7 +31,7 @@ function compareObjects(objTarget, objFilter){
     if (Array.isArray(objFilter["schools"])){
         if (!objFilter.schools.some(function(number){
                 for (let i=0; i<objTarget.schools.length; i++){
-                    if (objTarget.schools[i].id === number){
+                    if (objTarget.schools[i]._id === number){
                         return true;
                     }
                 }
